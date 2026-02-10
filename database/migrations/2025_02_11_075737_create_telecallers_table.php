@@ -17,10 +17,11 @@ return new class extends Migration {
             $table->string('mobile');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('meeting_datetime');
-            $table->string('interest');
+            $table->string('interest')->nullable();
             $table->string('status')->default('NEW');
             $table->string('deal_status')->default('pending');
             $table->date('follow_up_date')->nullable();
+            $table->string('follow_up_remark')->nullable();
             $table->timestamps();
         });
     }

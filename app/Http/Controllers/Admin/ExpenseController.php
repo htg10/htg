@@ -9,10 +9,33 @@ use App\Models\Expense;
 
 class ExpenseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $expenses = Expense::latest()->paginate(10);
-        return view('admin.expense.index', compact('expenses'));
+        $expenses = Expense::query();
+
+        // filter by purpose
+        if ($request->filled('purpose')) {
+            $expenses->where('purpose', 'like', '%' . $request->purpose . '%');
+        }
+
+        // filter by payment mode
+        if ($request->filled('payment_mode')) {
+            $expenses->where('payment_mode', $request->payment_mode);
+        }
+
+        //filter by date
+        if ($request->filled('from_date') && $request->filled('to_date')) {
+            $expenses->whereBetween('date', [
+                $request->from_date,
+                $request->to_date
+            ]);
+        }
+
+        $expenses = $expenses->latest()->get();
+        // $expenses = Expense::latest()->get();
+        $banks = Bank::all();
+
+        return view('admin.expense.index', compact('expenses', 'banks'));
     }
 
     public function create()
@@ -56,7 +79,7 @@ class ExpenseController extends Controller
     public function edit(Expense $expense)
     {
         $banks = Bank::all();
-        return view('admin.expense.edit', compact('expense','banks'));
+        return view('admin.expense.edit', compact('expense', 'banks'));
     }
 
     public function update(Request $request, Expense $expense)

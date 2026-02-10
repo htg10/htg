@@ -76,8 +76,14 @@
 
                                                     </select>
                                                     @if ($lead->deal_status === 'follow up')
+                                                        {{-- Follow-up Date --}}
                                                         <input type="date" name="follow_up_date"
                                                             value="{{ $lead->follow_up_date }}" class="form-control mt-2"
+                                                            onchange="this.form.submit()">
+
+                                                        {{-- Remark --}}
+                                                        <input type="text" name="follow_up_remark"
+                                                            value="{{ $lead->follow_up_remark }}" class="form-control mt-2" placeholder="Enter Remark"
                                                             onchange="this.form.submit()">
                                                     @endif
                                                 </form>

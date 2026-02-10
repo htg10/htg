@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BankController;
+use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\ExpenseController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -109,6 +110,14 @@ Route::group(['middleware' => ['auth', 'role:1']], function () {
     Route::get('/admin/lead/{id}/edit', [AdminController::class, 'edit'])->name('admin.lead.edit');
     Route::patch('/admin/lead/{id}', [AdminController::class, 'update'])->name('admin.lead.update');
     Route::get('/admin/lead/delete/{id}', [AdminController::class, 'delete1'])->name('admin.lead.delete');
+
+    // for room rent
+    Route::get('/admin/rent/index', [BuildingController::class, 'index'])->name('admin.rent.index');
+    Route::get('/admin/rent/create', [BuildingController::class, 'create'])->name('admin.rent.create');
+    Route::post('/admin/rent/create', [BuildingController::class, 'store'])->name('admin.rent.store');
+    Route::get('/admin/rent/{id}/edit', [BuildingController::class, 'edit'])->name('admin.rent.edit');
+    Route::patch('/admin/rent/{id}', [BuildingController::class, 'update'])->name('admin.rent.update');
+    Route::get('/admin/rent/delete/{id}', [BuildingController::class, 'delete1'])->name('admin.rent.delete');
 });
 
 // User Routes

@@ -79,6 +79,12 @@
                             <span key="t-chat">All Leads</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/rent/index" class="waves-effect">
+                            <i class="bx bx-list-ul"></i>
+                            <span key="t-chat">Building Rent</span>
+                        </a>
+                    </li>
                 @elseif (auth()->user()->role_id == 2)
                     <li>
                         <a href="{{ route('user.leads') }}" class="waves-effect">

@@ -53,10 +53,12 @@ class AdminController extends Controller
         $request->validate([
             'deal_status' => 'required|in:pending,follow up,deal closed',
             'follow_up_date' => 'nullable|date',
+            'follow_up_remark' => 'nullable',
         ]);
 
         $data = [
             'deal_status' => $request->deal_status,
+            'follow_up_remark' => $request->follow_up_remark,
         ];
 
         if ($request->deal_status === 'follow up') {
@@ -75,8 +77,38 @@ class AdminController extends Controller
     // fore leads Create, edit and delete
     public function index(Request $request)
     {
-        $telecallers = Telecaller::latest()->paginate(10);
-        return view('admin.leads.show.index', compact('telecallers'));
+        $telecallers = Telecaller::query();
+
+        if ($request->filled('name')) {
+            $telecallers->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('bdm_id')) {
+            $telecallers->where('user_id', $request->bdm_id);
+        }
+
+        // Filter by interest
+        if ($request->filled('interest')) {
+            $telecallers->where('interest', 'like', '%' . $request->interest . '%');
+        }
+
+        // Filter by deal status
+        if ($request->filled('deal_status')) {
+            $telecallers->where('deal_status', $request->deal_status);
+        }
+
+        if ($request->filled('from_date') && $request->filled('to_date')) {
+            $telecallers->whereBetween('created_at', [
+                $request->from_date,
+                $request->to_date
+            ]);
+        }
+
+        $telecallers = $telecallers->latest()->get();
+        $users = User::where('role_id', 2)->get();
+
+        // $telecallers = Telecaller::latest()->paginate(10);
+        return view('admin.leads.show.index', compact('telecallers', 'users'));
     }
 
     public function create()

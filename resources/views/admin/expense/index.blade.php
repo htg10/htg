@@ -19,6 +19,39 @@
                                 </a>
                             </div>
                             <div class="card shadow-sm">
+                                <form method="GET" action="{{ route('expense.index') }}" class="row g-2 mt-2 mx-2">
+                                    <div class="col-md-2">
+                                        <input type="text" name="purpose" value="{{ request('purpose') }}"
+                                            class="form-control" placeholder="Search Purpose">
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <select name="payment_mode" class="form-select">
+                                            <option value="">All Payment Modes</option>
+                                            @foreach ($banks as $bank)
+                                                <option value="{{ $bank->bank }}"
+                                                    {{ request('payment_mode') == $bank->bank ? 'selected' : '' }}>
+                                                    {{ $bank->bank }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <input type="date" name="from_date" value="{{ request('from_date') }}"
+                                            class="form-control" placeholder="From Date">
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <input type="date" name="to_date" value="{{ request('to_date') }}"
+                                            class="form-control" placeholder="To Date">
+                                    </div>
+
+                                    <div class="col-md-2 d-flex gap-2">
+                                        <button type="submit" class="btn btn-primary">Filter</button>
+                                        <a href="{{ route('expense.index') }}" class="btn btn-secondary">Reset</a>
+                                    </div>
+                                </form>
                                 <div class="card-body table-responsive">
                                     <table class="table table-bordered table-striped align-middle">
                                         <thead class="table-light">
@@ -86,7 +119,6 @@
     </div>
 @endsection
 @section('script')
-
     <script>
         $(document).ready(function() {
             // Only apply DataTables if there's at least one data row
@@ -95,7 +127,7 @@
 
             if (rowCount > 0 && !isEmpty) {
                 $('.table').DataTable({
-                    ordering: false,
+                    ordering: true,
                     language: {
                         paginate: {
                             previous: "<i class='fas fa-angle-left'></i>",
