@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('telecallers', function (Blueprint $table) {
             $table->id();
+            $table->string('business');
             $table->string('name');
             $table->string('address');
             $table->string('mobile');

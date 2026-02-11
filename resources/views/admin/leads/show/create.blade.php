@@ -34,17 +34,22 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <div class="col-12 mt-3">
-                                <label for="address">Customer Name :</label>
-                                <input type="text" class="form-control" name="name" placeholder="Customer Name">
+                            <div class="col-md-6 mt-3">
+                                <label for="business">Business Name :</label>
+                                <input type="text" class="form-control" name="business"
+                                    placeholder="Enter Business Name" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="name">Customer Name :</label>
+                                <input type="text" class="form-control" name="name" placeholder="Enter Customer Name" required>
                             </div>
                             <div class="col-12 mt-3">
                                 <label for="address">Address :</label>
-                                <input type="text" class="form-control" name="address" placeholder="Address">
+                                <input type="text" class="form-control" name="address" placeholder="Enter Address">
                             </div>
                             <div class="col-md-6">
                                 <label for="mobile">Mobile Number :</label>
-                                <input type="text" class="form-control" name="mobile" placeholder="Mobile Number">
+                                <input type="text" class="form-control" name="mobile" placeholder="Mobile Number" required>
                             </div>
                             <div class="col-md-5">
                                 <label for="user_id">BDM :</label>

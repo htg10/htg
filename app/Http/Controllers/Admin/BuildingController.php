@@ -10,8 +10,22 @@ class BuildingController extends Controller
 {
     public function index(Request $request)
     {
-        $buildings = Building::latest()->get();
-        return view('admin.building.index', compact('buildings'));
+        $buildings = Building::query();
+
+        //filter by date
+        if ($request->filled('from_date') && $request->filled('to_date')) {
+            $buildings->whereBetween('date', [
+                $request->from_date,
+                $request->to_date
+            ]);
+        }
+
+        $buildings = $buildings->latest()->get();
+
+        // Calculate total amount
+        $totalAmount = $buildings->sum('amount');
+
+        return view('admin.building.index', compact('buildings', 'totalAmount'));
     }
 
     public function create()

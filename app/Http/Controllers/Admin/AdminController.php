@@ -79,8 +79,8 @@ class AdminController extends Controller
     {
         $telecallers = Telecaller::query();
 
-        if ($request->filled('name')) {
-            $telecallers->where('name', 'like', '%' . $request->name . '%');
+        if ($request->filled('business')) {
+            $telecallers->where('business', 'like', '%' . $request->business . '%');
         }
 
         if ($request->filled('bdm_id')) {
@@ -120,6 +120,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'business' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'mobile' => 'required|string|max:15',
@@ -129,6 +130,7 @@ class AdminController extends Controller
         ]);
 
         $telecaller = new Telecaller([
+            'business' => $request->input('business'),
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'mobile' => $request->input('mobile'),
@@ -155,6 +157,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'business' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'mobile' => 'required|string|max:15',
@@ -167,6 +170,7 @@ class AdminController extends Controller
         // $data = $request->all();
 
         $telecaller->update([
+            'business' => $validated['business'],
             'name' => $validated['name'],
             'address' => $validated['address'],
             'mobile' => $validated['mobile'],

@@ -36,9 +36,15 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <div class="col-12 mt-3">
+                            <div class="col-md-6 mt-3">
+                                <label for="business">Business Name :</label>
+                                <input type="text" class="form-control" name="business" placeholder="Enter Business Name"
+                                    value="{{ $telecallers->business }}">
+                            </div>
+                            <div class="col-md-6 mt-3">
                                 <label for="address">Customer Name :</label>
-                                <input type="text" class="form-control" name="name" placeholder="Customer Name" value="{{ $telecallers->name }}">
+                                <input type="text" class="form-control" name="name" placeholder="Customer Name"
+                                    value="{{ $telecallers->name }}">
                             </div>
                             <div class="col-12 mt-3">
                                 <label for="address">Address :</label>
@@ -69,7 +75,8 @@
                             <div class="col-md-6">
                                 <label for="meeting_datetime">Meeting Date and Time :</label>
                                 <input type="datetime-local" class="form-control" name="meeting_datetime"
-                                    id="meeting_datetime" placeholder="Select Date and Time" value="{{ $telecallers->meeting_datetime }}">
+                                    id="meeting_datetime" placeholder="Select Date and Time"
+                                    value="{{ $telecallers->meeting_datetime }}">
                             </div>
 
                             <div class="col-md-6">

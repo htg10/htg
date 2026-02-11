@@ -14,9 +14,10 @@
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0 font-size-18">Add New Telecaller</h4>
-                         <div class="page-title-right">
-                        <a href="{{ url('/admin/telecallers') }}" class="btn btn-primary waves-effect waves-light"> Show Telecallers</a>
-                    </div>
+                        <div class="page-title-right">
+                            <a href="{{ url('/admin/telecallers') }}" class="btn btn-primary waves-effect waves-light"> Show
+                                Telecallers</a>
+                        </div>
                     </div>
                 </div>
             </div>

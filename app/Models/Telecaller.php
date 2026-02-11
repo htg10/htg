@@ -9,6 +9,7 @@ class Telecaller extends Model
     protected $table = 'telecallers';
 
     protected $fillable = [
+        'business',
         'name',
         'address',
         'mobile',

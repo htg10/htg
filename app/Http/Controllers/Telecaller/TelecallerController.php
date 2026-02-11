@@ -11,8 +11,36 @@ class TelecallerController extends Controller
 {
     public function index(Request $request)
     {
-        $telecallers = Telecaller::latest()->paginate(10);
-        return view('telecaller.index', compact('telecallers'));
+        $telecallers = Telecaller::query();
+
+        if ($request->filled('business')) {
+            $telecallers->where('business', 'like', '%' . $request->business . '%');
+        }
+
+        if ($request->filled('bdm_id')) {
+            $telecallers->where('user_id', $request->bdm_id);
+        }
+
+        // Filter by interest
+        if ($request->filled('interest')) {
+            $telecallers->where('interest', 'like', '%' . $request->interest . '%');
+        }
+
+        // Filter by deal status
+        if ($request->filled('deal_status')) {
+            $telecallers->where('deal_status', $request->deal_status);
+        }
+
+        if ($request->filled('from_date') && $request->filled('to_date')) {
+            $telecallers->whereBetween('created_at', [
+                $request->from_date,
+                $request->to_date
+            ]);
+        }
+
+        $telecallers = $telecallers->latest()->get();
+        $users = User::where('role_id', 2)->get();
+        return view('telecaller.index', compact('telecallers', 'users'));
     }
 
     public function create()
@@ -24,6 +52,7 @@ class TelecallerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'business' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'mobile' => 'required|string|max:15',
@@ -33,6 +62,7 @@ class TelecallerController extends Controller
         ]);
 
         $telecaller = new Telecaller([
+            'business' => $request->input('business'),
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'mobile' => $request->input('mobile'),
@@ -59,6 +89,7 @@ class TelecallerController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'business' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'mobile' => 'required|string|max:15',
@@ -71,6 +102,7 @@ class TelecallerController extends Controller
         // $data = $request->all();
 
         $telecaller->update([
+            'business' => $validated['business'],
             'name' => $validated['name'],
             'address' => $validated['address'],
             'mobile' => $validated['mobile'],

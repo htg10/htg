@@ -27,6 +27,29 @@
                             + Add Rent
                         </a></div>
                     <div class="card border">
+                        <form method="GET" action="{{ route('admin.rent.index') }}" class="row g-2 mt-2 mx-2">
+
+                            <div class="col-md-3">
+                                <input type="date" name="from_date" value="{{ request('from_date') }}"
+                                    class="form-control" placeholder="From Date">
+                            </div>
+
+                            <div class="col-md-3">
+                                <input type="date" name="to_date" value="{{ request('to_date') }}" class="form-control"
+                                    placeholder="To Date">
+                            </div>
+
+                            <div class="col-md-3 d-flex gap-2">
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <a href="{{ route('admin.rent.index') }}" class="btn btn-secondary">Reset</a>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="alert alert-info m-0">
+                                    <strong>Total Rent Amount:</strong> ₹ {{ number_format($totalAmount, 2) }}
+                                </div>
+                            </div>
+                        </form>
+
                         <div class="card-body table-responsive">
                             <table id="rentTable" class="table table-bordered dt-responsive nowrap w-100 mt-3">
                                 <thead>

@@ -28,8 +28,8 @@
                     <div class="card border">
                         <form method="GET" action="{{ route('admin.lead.index') }}" class="row g-2 mt-2 mx-2">
                             <div class="col-md-2">
-                                <input type="text" name="name" value="{{ request('name') }}" class="form-control"
-                                    placeholder="Customer Name">
+                                <input type="text" name="business" value="{{ request('business') }}" class="form-control"
+                                    placeholder="Search Business Name">
                             </div>
 
                             <div class="col-md-2">
@@ -75,6 +75,7 @@
                                 <thead>
                                     <tr>
                                         <th class="col-1">Sr.No.</th>
+                                        <th>Business Name</th>
                                         <th>Customer Name</th>
                                         <th>Address</th>
                                         <th>Meeting Date and Time</th>
@@ -89,6 +90,7 @@
                                     @foreach ($telecallers as $key => $telecaller)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td>{{ $telecaller->business }}</td>
                                             <td>{{ $telecaller->name }}</td>
                                             <td>
                                                 <span class="comment-short">
