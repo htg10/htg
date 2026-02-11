@@ -31,6 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th class="col-1">Sr.No.</th>
+                                        <th>Business Name</th>
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Interest</th>
@@ -43,6 +44,7 @@
                                     @forelse ($leads as $key=>$lead)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td>{{ $lead->business }}</td>
                                             <td>{{ $lead->name }}</td>
                                             <td>{{ $lead->mobile }}</td>
                                             <td>{{ $lead->interest }}</td>
