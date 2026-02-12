@@ -35,7 +35,10 @@ class ExpenseController extends Controller
         // $expenses = Expense::latest()->get();
         $banks = Bank::all();
 
-        return view('admin.expense.index', compact('expenses', 'banks'));
+        // Calculate total amount
+        $totalAmount = $expenses->sum('amount');
+
+        return view('admin.expense.index', compact('expenses', 'banks', 'totalAmount'));
     }
 
     public function create()

@@ -51,6 +51,11 @@
                                         <button type="submit" class="btn btn-primary">Filter</button>
                                         <a href="{{ route('expense.index') }}" class="btn btn-secondary">Reset</a>
                                     </div>
+                                    <div class="col-md-2">
+                                        <div class="alert alert-info m-0">
+                                            <strong>Total Expenses:</strong> ₹ {{ number_format($totalAmount, 2) }}
+                                        </div>
+                                    </div>
                                 </form>
                                 <div class="card-body table-responsive">
                                     <table class="table table-bordered table-striped align-middle">
