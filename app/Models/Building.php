@@ -13,6 +13,7 @@ class Building extends Model
         'mobile',
         'building',
         'amount',
+        'payment_mode',
         'date',
     ];
 }

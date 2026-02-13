@@ -43,10 +43,21 @@
                                     value="{{ $buildings->mobile }}">
                             </div>
 
-                            <div class="col-12 mt-3">
+                            <div class="col-md-6">
                                 <label for="building">Bulding Name :</label>
                                 <input type="text" class="form-control" name="building" placeholder="Enter Building Name"
                                     value="{{ $buildings->building }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Payment Mode *</label>
+                                <select name="payment_mode" id="payment_mode" class="form-select" required>
+                                    <option value="">Payment Mode</option>
+                                    @foreach ($banks as $b)
+                                        <option value="{{ $b->bank }}"
+                                            {{ $buildings->payment_mode == $b->bank ? 'selected' : '' }}>
+                                            {{ $b->bank }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <label for="amount">Amount :</label>

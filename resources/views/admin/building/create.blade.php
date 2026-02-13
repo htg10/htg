@@ -39,15 +39,23 @@
                                 <input type="text" class="form-control" name="mobile" placeholder="Mobile Number">
                             </div>
 
-                            <div class="col-12 mt-3">
+                            <div class="col-md-6 mt-3">
                                 <label for="building">Bulding Name :</label>
                                 <input type="text" class="form-control" name="building"
                                     placeholder="Enter Building Name">
                             </div>
                             <div class="col-md-6 mt-3">
+                                <label>Payment Mode *</label>
+                                <select name="payment_mode" id="payment_mode" class="form-select" required>
+                                    <option value="">Payment Mode</option>
+                                    @foreach ($banks as $bank)
+                                        <option value="{{ $bank->bank }}">{{ $bank->bank }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6 mt-3">
                                 <label for="amount">Amount :</label>
-                                <input type="text" class="form-control" name="amount"
-                                    placeholder="Enter Amount Name">
+                                <input type="text" class="form-control" name="amount" placeholder="Enter Amount Name">
                             </div>
                             <div class="col-md-6 mt-3">
                                 <label for="date">Date :</label>

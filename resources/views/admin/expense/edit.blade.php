@@ -42,49 +42,6 @@
                                         {{ $expense->payment_mode == $b->bank ? 'selected' : '' }}>
                                         {{ $b->bank }}</option>
                                 @endforeach
-                                {{-- <option value="Axis (Saurabh)"
-                                    {{ $expense->payment_mode == 'Axis (Saurabh)' ? 'selected' : '' }}>
-                                    Axis (Saurabh)
-                                </option>
-                                <option value="Axis (Neha)" {{ $expense->payment_mode == 'Axis (Neha)' ? 'selected' : '' }}>
-                                    Axis (Neha)
-                                </option>
-                                <option value="Kotak (Saurabh)"
-                                    {{ $expense->payment_mode == 'Kotak (Saurabh)' ? 'selected' : '' }}>
-                                    Kotak (Saurabh)
-                                </option>
-                                <option value="Kotak (Nidhi)"
-                                    {{ $expense->payment_mode == 'Kotak (Nidhi)' ? 'selected' : '' }}>
-                                    Kotak (Nidhi)
-                                </option>
-                                <option value="SBI (Saurabh)"
-                                    {{ $expense->payment_mode == 'SBI (Saurabh)' ? 'selected' : '' }}>
-                                    SBI (Saurabh)
-                                </option>
-                                <option value="PNB (Atul)" {{ $expense->payment_mode == 'PNB (Atul)' ? 'selected' : '' }}>
-                                    PNB (Atul)
-                                </option>
-                                <option value="HDFC (Atul)"
-                                    {{ $expense->payment_mode == 'HDFC (Atul)' ? 'selected' : '' }}>
-                                    HDFC (Atul)
-                                </option>
-                                <option value="IDFC (Rajesh)"
-                                    {{ $expense->payment_mode == 'IDFC (Rajesh)' ? 'selected' : '' }}>
-                                    IDFC (Rajesh)
-                                </option>
-                                <option value="YES (HTG)" {{ $expense->payment_mode == 'YES (HTG)' ? 'selected' : '' }}>
-                                    YES (HTG)
-                                </option>
-                                <option value="BOB (HTG)" {{ $expense->payment_mode == 'BOB (HTG)' ? 'selected' : '' }}>
-                                    BOB (HTG)
-                                </option>
-                                <option value="HDFC (HELTOG)"
-                                    {{ $expense->payment_mode == 'HDFC (HELTOG)' ? 'selected' : '' }}>
-                                    HDFC (HELTOG)
-                                </option>
-                                <option value="Cash" {{ $expense->payment_mode == 'Cash' ? 'selected' : '' }}>
-                                    Cash
-                                </option> --}}
                             </select>
                         </div>
 

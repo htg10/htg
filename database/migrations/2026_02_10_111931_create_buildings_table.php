@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('mobile')->nullable();
             $table->string('building')->nullable();
             $table->string('amount')->nullable();
+            $table->string('payment_mode')->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
         });

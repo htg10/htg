@@ -67,6 +67,7 @@
 
                             <div class="col-md-2 d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">Filter</button>
+
                                 <a href="{{ route('telecaller.index') }}" class="btn btn-secondary">Reset</a>
                             </div>
                         </form>

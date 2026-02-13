@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Building;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class BuildingController extends Controller
 
     public function create()
     {
-        return view('admin.building.create');
+        $banks = Bank::all();
+        return view('admin.building.create', compact('banks'));
     }
 
     public function store(Request $request)
@@ -40,6 +42,7 @@ class BuildingController extends Controller
             'mobile' => 'nullable|string|max:10',
             'building' => 'nullable|string|max:255',
             'amount' => 'nullable|string',
+            'payment_mode' => 'required|string',
             'date' => 'nullable|date',
         ]);
 
@@ -49,6 +52,7 @@ class BuildingController extends Controller
             'building' => $request->input('building'),
             'date' => $request->input('date'),
             'amount' => $request->input('amount'),
+            'payment_mode' => $request->payment_mode,
         ]);
 
         $building->save();
@@ -60,7 +64,8 @@ class BuildingController extends Controller
     public function edit($id)
     {
         $buildings = Building::findOrFail($id);
-        return view('admin.building.edit', compact('buildings'));
+        $banks = Bank::all();
+        return view('admin.building.edit', compact('buildings', 'banks'));
     }
 
     public function update(Request $request, $id)
@@ -70,6 +75,7 @@ class BuildingController extends Controller
             'mobile' => 'nullable|string|max:10',
             'building' => 'nullable|string|max:255',
             'amount' => 'nullable|string',
+            'payment_mode' => 'required|string',
             'date' => 'nullable|date',
         ]);
 
@@ -81,6 +87,7 @@ class BuildingController extends Controller
             'mobile' => $validated['mobile'],
             'building' => $validated['building'],
             'amount' => $validated['amount'],
+            'payment_mode' => $request->payment_mode,
             'date' => $validated['date'],
         ]);
         return redirect('/admin/rent/index')->with('success', 'Update successfully.');

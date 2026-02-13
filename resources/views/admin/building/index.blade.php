@@ -59,6 +59,7 @@
                                         <th>Mobile Number</th>
                                         <th>Building Name</th>
                                         <th>Amount</th>
+                                        <th>Payment Mode</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -71,6 +72,7 @@
                                             <td>{{ $building->mobile }}</td>
                                             <td>{{ $building->building }}</td>
                                             <td>{{ $building->amount }}</td>
+                                            <td>{{ $building->payment_mode }}</td>
                                             <td>{{ $building->date }}</td>
                                             <td>
                                                 <a href="{{ route('admin.rent.edit', $building->id) }}"
