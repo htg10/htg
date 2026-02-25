@@ -58,17 +58,18 @@
 
                                                     <select name="deal_status" onchange="this.form.submit()"
                                                         class="form-select
-                                                            {{ $lead->deal_status == 'pending' ? 'border border-danger text-danger' : '' }}
-                                                            {{ $lead->deal_status == 'follow up' ? 'border border-warning text-warning' : '' }}
+                                                            {{ $lead->deal_status == 'pending' ? 'border border-warning text-warning' : '' }}
+                                                            {{ $lead->deal_status == 'follow up' ? 'border border-primary text-primary' : '' }}
                                                             {{ $lead->deal_status == 'deal closed' ? 'border border-success text-success' : '' }}
+                                                            {{ $lead->deal_status == 'not interested' ? 'border border-danger text-danger' : '' }}
                                                         ">
 
-                                                        <option value="pending" class="text-danger"
+                                                        <option value="pending" class="text-warning"
                                                             {{ $lead->deal_status == 'pending' ? 'selected' : '' }}>
                                                             Pending
                                                         </option>
 
-                                                        <option value="follow up" class="text-warning"
+                                                        <option value="follow up" class="text-primary"
                                                             {{ $lead->deal_status == 'follow up' ? 'selected' : '' }}>
                                                             Follow Up
                                                         </option>
@@ -76,6 +77,10 @@
                                                         <option value="deal closed" class="text-success"
                                                             {{ $lead->deal_status == 'deal closed' ? 'selected' : '' }}>
                                                             Deal Closed
+                                                        </option>
+                                                        <option value="not interested" class="text-danger"
+                                                            {{ $lead->deal_status == 'not interested' ? 'selected' : '' }}>
+                                                            Not Interested
                                                         </option>
 
                                                     </select>

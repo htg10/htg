@@ -97,7 +97,7 @@ class UserController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'deal_status' => 'required|in:pending,follow up,deal closed',
+            'deal_status' => 'required|in:pending,follow up,deal closed,not interested',
             'follow_up_date' => 'nullable|date',
         ]);
 

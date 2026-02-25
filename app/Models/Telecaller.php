@@ -16,6 +16,7 @@ class Telecaller extends Model
         'user_id',
         'meeting_datetime',
         'interest',
+        'deal_status',
         'status'
     ];
 
